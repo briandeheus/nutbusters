@@ -17,15 +17,16 @@ MOVIES_TARGET = os.environ.get("MOVIES_TARGET")
 TRANSMISSION_URL = os.environ.get("TRANSMISSION_URL")
 TRANSMISSION_USERNAME = os.environ.get("TRANSMISSION_USERNAME")
 TRANSMISSION_PASSWORD = os.environ.get("TRANSMISSION_PASSWORD")
-
+TRANSMISSION_PROTOCOL = os.environ.get("TRANSMISSION_PROTOCOL", "https")
+TRANSMISSION_PORT = int(os.environ.get("TRANSMISSION_PORT", "443"))
 app = flask.Flask(__name__)
 db = TinyDB("./files.json")
 
 tc_client = Client(host=TRANSMISSION_URL,
                    username=TRANSMISSION_USERNAME,
                    password=TRANSMISSION_PASSWORD,
-                   protocol="https",
-                   port=443)
+                   protocol=TRANSMISSION_PROTOCOL,
+                   port=TRANSMISSION_PORT)
 
 
 def hash_magnet_url(magnet_url):
