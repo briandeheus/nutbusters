@@ -1,7 +1,7 @@
 import datetime
 import hashlib
 import os
-import shutil
+import subprocess
 import threading
 
 import dotenv
@@ -51,7 +51,7 @@ def move_download(local_torrent, remote_torrent):
         raise Exception("Invalid media type")
 
     try:
-        shutil.move(src=source_path, dst=target_path)
+        subprocess.run(["rsync", "-av", source_path, target_path])
         print(f"Successfully moved {source_path} to {target_path}")
     except Exception as e:
         print(f"Failed moving {source_path} to {target_path}: {e}")
@@ -61,7 +61,6 @@ def move_download(local_torrent, remote_torrent):
 def dashboard():
     if request.method == "POST":
         query = Query()
-        print(request.form)
         local_torrent = db.get(query.hash == request.form["hash"])
         remote_torrent = find_remote_torrent(magnet_hash=local_torrent["hash"])
 
