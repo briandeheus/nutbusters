@@ -68,6 +68,9 @@ def dashboard():
             "local_torrent": local_torrent,
             "remote_torrent": remote_torrent})
         thread.start()
+
+        # Remove torrent from DB and transmission.
+        db.remove(query.hash == request.form["hash"])
         tc_client.remove_torrent(ids=[remote_torrent.id], delete_data=False)
 
     local_torrents = db.all()
