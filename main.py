@@ -2,6 +2,7 @@ import datetime
 import hashlib
 import os
 import shutil
+import threading
 
 import dotenv
 import flask
@@ -63,10 +64,12 @@ def dashboard():
         print(request.form)
         local_torrent = db.get(query.hash == request.form["hash"])
         remote_torrent = find_remote_torrent(magnet_hash=local_torrent["hash"])
-        move_download(
-            local_torrent=local_torrent,
-            remote_torrent=remote_torrent
-        )
+
+        thread = threading.Thread(target=move_download, kwargs={
+            "local_torrent": local_torrent,
+            "remote_torrent": remote_torrent})
+        thread.start()
+        tc_client.remove_torrent(ids=[remote_torrent.id], delete_data=False)
 
     local_torrents = db.all()
     remote_torrents_dict = {hash_magnet_url(t.magnet_link): t for t in tc_client.get_torrents()}
