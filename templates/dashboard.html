@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Peers</th>
+                <th>Progress</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for torrent in torrents %}
+                <tr>
+                    <td>{{ torrent.remote.name }}</td>
+                    <td>{{ torrent.remote.status }}</td>
+                    <td>{{ torrent.remote.peers_connected }}</td>
+                    <td>{{ torrent.remote.progress }}%</td>
+                    <td>
+                        <form method="post" enctype="multipart/form-data">
+                            <input type="hidden" value="{{ torrent.hash }}" name="hash"/>
+                            <button>Send to Jellyfin</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

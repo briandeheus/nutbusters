@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>NutBusters</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+          rel="stylesheet">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            font-family: "Lato", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            background-color: #111827;
+            color: #d1d5db;
+        }
+
+        nav {
+            background-color: #030712;
+            box-sizing: border-box;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-grow: 1;
+            align-items: end;
+            margin: 0 0 1em 2em;
+            padding: 0;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 16px;
+            text-transform: uppercase;
+        }
+
+        .logo-font {
+            font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 4em;
+            color: #dc2626;
+        }
+
+        main {
+            padding: 12px;
+        }
+
+        table {
+            width: 100%;
+            font-size: 12px;
+        }
+
+        form {
+            margin: 0;
+            padding: 0;
+        }
+
+        table th,
+        table td {
+            text-align: left;
+            padding: 6px 0;
+        }
+
+        button {
+            background-color: transparent;
+            border: 1px solid #cbd5e1;
+            color: #d1d5db;
+            padding: 2px 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo-font">
+            NUTBUSTERS
+        </div>
+        <ul>
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/new">Add New</a></li>
+        </ul>
+    </nav>
+</header>
+
+{% block content %}
+{% endblock %}
+</body>
+</html>

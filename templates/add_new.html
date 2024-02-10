@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main>
+        <h1>Add a new link</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div>
+                <p>
+                    To make sure your download ends up in the right location, select the media type.
+                </p>
+                <label>
+                    Media Type:
+                    <select name="media_type">
+                        <option value="series">Series</option>
+                        <option value="movies">Movies</option>
+                    </select>
+                </label>
+            </div>
+
+            <div>
+                <p>
+                    Make sure to use a proper magnet url. Torrent links will not work.
+                </p>
+                <label>
+                    Magnet URL:
+                    <input type="text" name="url" placeholder="magnet:foobar" required/>
+                </label>
+            </div>
+
+            <div>
+                <p>
+                    The target directory for the upload, for movies, use <code>movie-name</code>.
+                </p>
+                <p>
+                    For series use <code>series-name/season-01</code>. If the torrent already includes all seasons,
+                    just use <code>series-name</code>
+                </p>
+                <label>
+                    Target location:
+                    <input type="text" name="target_location" placeholder="movie-name" required>
+                </label>
+            </div>
+            <div>
+                <button>Upload</button>
+            </div>
+        </form>
+    </main>
+{% endblock %}
